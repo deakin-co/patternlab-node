@@ -17,7 +17,6 @@ const logger = require('./log');
 const processIterative = require('./processIterative');
 const processRecursive = require('./processRecursive');
 
-//added a comment from github - 21/11/2018
 const loadPattern = require('./loadPattern');
 const sm = require('./starterkit_manager');
 
@@ -331,8 +330,9 @@ module.exports = class PatternLab {
       );
     });
     return promiseAllPatternFiles.then(() => {
+      let tempPatterns = this.patterns.slice(0);
       return Promise.all(
-        this.patterns.map(pattern => {
+        tempPatterns.map(pattern => {
           return processIterative(pattern, self);
         })
       );
